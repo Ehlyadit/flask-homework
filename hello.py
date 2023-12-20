@@ -7,8 +7,13 @@ from flask import Flask, request
 #    TOKEN = f.read().strip()
 
 TOKEN = os.environ["TOKEN"]
+RENDER_URL = os.environ["RENDER_URL"]
+print(TOKEN)
 
 sendMessage = f"https://api.telegram.org/bot{TOKEN}/sendMessage"
+
+result = requests.post(rf"https://api.telegram.org/bot{TOKEN}/setWebhook", params={"url":RENDER_URL})
+print("webhook", result)
 
 app = Flask(__name__)
 
